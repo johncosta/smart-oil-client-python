@@ -8,7 +8,7 @@ repository:
   description: Wrapper for Smart Oil Gauge APIs
 
   # A URL with more information about the repository
-  homepage: https://example.github.io/
+  homepage: https://johncosta.github.io/smart-oil-api-python/
 
   # A comma-separated list of topics to set on the repository
   topics: github, smartoil, smart-oil, python
