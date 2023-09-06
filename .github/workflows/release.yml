@@ -24,3 +24,8 @@ jobs:
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
           echo "Upload release artifacts to ${{ steps.release.outputs.upload_url }}"
+
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@1.26
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
