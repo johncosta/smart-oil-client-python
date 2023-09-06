@@ -1,6 +1,9 @@
 on:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   release-on-push:
     runs-on: ubuntu-latest
