@@ -1,0 +1,10 @@
+site_name: Wrapper for Smart Oil Gauge APIs
+site_description: 'Wrapper for Smart Oil Gauge APIs Documentation'
+site_author: 'John Costa'
+docs_dir: docs/
+repo_name: 'johncosta/smart-oil-api-python'
+repo_url: 'https://github.com/johncosta/smart-oil-api-python'
+nav:
+  - Home: index.md
+theme:
+  name: 'material'
