@@ -21,7 +21,7 @@ be retrieved.
 Connecting the Sensors to the "brand" requires a final step from support and then
 the api will be available for use.
 
-### API Documentation
+### Unofficial API Documentation
 
 All api calls should be made to the following base url: <https://api.dropletfuel.com>
 
