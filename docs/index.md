@@ -15,7 +15,7 @@ What worked for me was to email the request for API access to
 on how to get setup in the <https://www.dropletfuel.com/> portal. 
 
 After setting up a faux "brand" in the <https://www.dropletfuel.com/> portal 
-and adding credit card on file for the monthly fee, client credetials can then
+and adding credit card on file for the monthly fee, client credentials can then
 be retrieved.
 
 Connecting the Sensors to the "brand" requires a final step from support and then
@@ -62,7 +62,54 @@ All api calls should be made to the following base url: <https://api.dropletfuel
 curl --request POST \
 --url 'https://api.dropletfuel.com/token' \
 --header 'content-type: application/x-www-form-urlencoded' \
+--header 'User-Agent: ' \
 --data grant_type=client_credentials \
 --data client_id=YOUR_CLIENT_ID \
 --data client_secret=YOUR_CLIENT_SECRET
+```
+
+#### Retrieve Tank Data
+
+**_NOTE:_** It seems that this endpoint may only return the last data result from the tank.
+
+
+##### GET /auto/get_tank_data.php
+
+###### Request Headers
+
+| name         | type     | data type | description                                                                                                                                                                |
+|--------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| User-Agent   | required | string    | User-Agent is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent. |
+| Content-Type | required | string    | Content-Type is a representation header is used to indicate the original media type of the resource.                                                                       |
+
+**_NOTE:_** User-Agent is usually an optional header, but it's been noted that a 406 Not Acceptable response is returned when absent.
+
+**_NOTE:_** Content-Type should be set to `application/x-www-form-urlencoded` for the token request.
+
+
+###### Request Parameters
+
+> | name        | type     | data type | description                                    |
+> |-------------|----------|-----------|------------------------------------------------|
+> | start_index | required | string    | Starting index for results returned.           |
+> | max_results | required | string    | Maximum number of results returned in the API. |
+
+
+###### Responses
+
+> | http code | content-type                    | response                                                                                                                                                                                                                                                                                                                                                                            |
+> |-----------|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+> | `200`     | `application/json`              | `{"result":"ok","start_index":"0","max_results":"1000","data":[{"acct_num":"ABC1234","tank_num":"1","gallons":"307.74","tank_volume":"660","sensor_id":"1123456789","last_read":"2023-09-07 08:25:17","battery":"Good"},{"acct_num":"ABC1234","tank_num":"1","gallons":"178.72","tank_volume":"660","sensor_id":"1123456789","last_read":"2023-09-07 08:39:58","battery":"Good"}]}` |
+> | `401`     | `application/json`              | `{"error":"expired_token","error_description":"The access token provided is invalid"}`                                                                                                                                                                                                                                                                                              |
+> | `406`     | `text/html; charset=iso-8859-1` | 406 Not Acceptable                                                                                                                                                                                                                                                                                                                                                                  |
+
+
+###### Example cURL
+
+```shell
+curl --request GET \
+--url 'https://api.dropletfuel.com/auto/get_tank_data.php' \
+--header 'User-Agent: ' \
+--header 'Content-Type: application/json'
+--header 'Authorization: Bearer <token>'
 ```
