@@ -30,7 +30,7 @@ repository:
   has_downloads: true
 
   # Updates the default branch for this repository.
-  default_branch: master
+  default_branch: main
 
   # Either `true` to allow squash-merging pull requests, or `false` to prevent
   # squash-merging.
@@ -82,8 +82,8 @@ branches:
     # https://docs.github.com/en/rest/reference/repos#update-branch-protection
     # Branch Protection settings. Set to null to disable
     protection:
-      # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
-#      required_pull_request_reviews:
+#      # Required. Require at least one approving review on a pull request, before merging. Set to null to disable.
+      required_pull_request_reviews:
 #        # The number of approvals required. (1-6)
 #        required_approving_review_count: 1
 #        # Dismiss approved reviews automatically when a new commit is pushed.
